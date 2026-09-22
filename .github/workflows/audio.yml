@@ -17,15 +17,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install FFmpeg
+      - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg deno
+          python -m pip install -U yt-dlp
 
       - name: Download audio
         run: |
-          python -m pip install -U yt-dlp
           yt-dlp \
+            --js-runtimes deno \
             --no-playlist \
             -x \
             --audio-format mp3 \
