@@ -20,7 +20,9 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg deno
+          sudo apt-get install -y ffmpeg curl unzip
+          curl -fsSL https://deno.land/install.sh | sh
+          echo "$HOME/.deno/bin" >> "$GITHUB_PATH"
           python -m pip install -U yt-dlp
 
       - name: Download audio
